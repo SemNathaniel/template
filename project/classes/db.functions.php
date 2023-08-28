@@ -1,9 +1,11 @@
 <?php
 class dbFunctions {
 
+    //define variables
     public $result = '';
     public $dbcon = '';
 
+    //define functions
     public function __construct(){
         if(!empty(DBHOST) && !empty(DBUSER) && !empty(DBNAME)){
            $this->dbcon = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
@@ -11,7 +13,7 @@ class dbFunctions {
         if(!empty($this->dbcon->connect_error)){
             $error = $this->dbcon->connect_error;
             error_log($error . date('l jS \of F Y h:i:s A'), 3, DIRPATH . 'errorLog.txt');
-            echo error::$connectDb;
+            echo errorMsg::$connectDb;
             die();
         } else {
         }
@@ -30,7 +32,7 @@ class dbFunctions {
                     return array(false ,'No records found');
                 }
             } catch(Exception $error) {
-                return array(false, error::$sql . error_log($error . date('l jS \of F Y h:i:s A'), 3, DIRPATH . 'errorLog.txt'));
+                return array(false, errorMsg::$sql . error_log($error . date('l jS \of F Y h:i:s A'), 3, DIRPATH . 'errorLog.txt'));
             }
         } else {
             return array(false, 'no query given');
@@ -45,7 +47,7 @@ class dbFunctions {
                     return array(true);
                 }
             } catch(Exception $error){
-                return array(false, error::$sql . error_log($error . date('l jS \of F Y h:i:s A'), 3, DIRPATH . 'errorLog.txt'));
+                return array(false, errorMsg::$sql . error_log($error . date('l jS \of F Y h:i:s A'), 3, DIRPATH . 'errorLog.txt'));
             }
         } else {
             return array(false, 'no query given');
