@@ -9,6 +9,9 @@ $tabTitle = '';
 $content = '';
 $html = '';
 
+//index.php code
+// make sure to keep this code limited make controllers in a separate file just like functions
+
 //prepare html
 $html .= '<!DOCTYPE html>
 <html lang="en">
