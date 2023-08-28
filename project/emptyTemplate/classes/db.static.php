@@ -2,14 +2,13 @@
 require_once('db.functions.php');
 class db extends dbFunctions {
 
-    public $response = '';
-
+    //turn dbFunctions's functions into usable static functions
     public static function selectSqlFunction($sql){
         return (new dbFunctions)->selectFunction($sql);
     }
 
     public static function otherSqlFunction($sql){
-        return self::$response = (new dbFunctions)->sqlFunction($sql);
+        return (new dbFunctions)->sqlFunction($sql);
     }
 }
 ?>
