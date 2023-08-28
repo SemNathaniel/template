@@ -11,6 +11,8 @@ $html = '';
 
 //index.php code
 // make sure to keep this code limited make controllers in a separate file just like functions
+$content = db::selectSqlFunction("SELECT paginaTitel FROM paginadata");
+print_r($content);
 
 //prepare html
 $html .= '<!DOCTYPE html>
