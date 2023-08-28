@@ -32,5 +32,33 @@ $navBar = '';
 //add this to the code part
 $navDbResult = db::selectSqlFunction("SELECT /*COLUMN NAME*/ FROM /*TABLE NAME*/;");
 foreach($navDbResult[1] as $result){
-    $navBar .= '<a href="index.php?modules=' . $result[/*COLUMN NAME delete 0*/0] . '">' . $result[/*COLUMN NAME delete 0*/0] . '</a> ';
+    $navBar .= '<a href="index.php?modules=' . $result[/*ARRAY KEY*/0] . '">' . $result[/*ARRAY KEY*/0] . '</a> ';
+}
+
+// this 3rd piece of code is usefull to make a combination
+
+//change the CAPS LOCK comments in the sql to what works with your database
+//add a modules directory filled with directories that contain a index.php file
+//the records and directory names that get selected will be displayed so beware
+
+//add this to index.php
+
+//add this to the variables list
+$scandirResult = array();
+$navDbResult = array();
+$navBar = '';
+$allNavBar = array();
+
+//add this to the code part
+$navDbResult = db::selectSqlFunction("SELECT /*COLUMN NAME*/ FROM /*TABLE NAME*/;");
+$scandirResult = scandir('tempModules');
+$allNavBar = array_merge($navDbResult, $scandirResult);
+foreach($allNavBar as $result){
+    try{
+        $navBar .= '<a href="index.php?modules=' . $result[0] . '">' . $result[0] . '</a> ';
+    } catch(Exception){
+
+    } finally {
+        $navBar .= '<a href="index.php?modules=' . $result . '">' . $result . '</a> '; 
+    }
 }

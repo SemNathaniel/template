@@ -24,9 +24,9 @@ class dbFunctions {
             $sql = trim($sql);
             try{$this->result = $this->dbcon->query($sql);
                 if($this->result->num_rows > 0){
-                    $records = $this->result->fetch_all(MYSQLI_ASSOC);
+                    $records = $this->result->fetch_all();
                     if(!empty($records)){
-                        return array(true, $records);
+                        return $records;
                     }
                 } else {
                     return array(false ,'No records found');
